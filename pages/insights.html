@@ -21,7 +21,7 @@
             </div>
             <ul class="nav-links">
                 <li><a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a></li>
-                <li><a href="tasks.html"><i class="fas fa-tasks"></i> Tasks</a></li>
+                <li><a href="calender.html"><i class="fas fa-calendar"></i>Calendar</a></li>
                 <li class="active"><a href="insights.html"><i class="fas fa-chart-line"></i> Insights</a></li>
                 <li><a href="myProfile.html"><i class="fas fa-user"></i> Profile</a></li>
             </ul>
@@ -30,11 +30,11 @@
         <!-- Main Content -->
         <main class="main-content">
             <header class="page-header">
-                <h1>Insights & Analysis</h1>
+                <h1>Today's Insights & Analysis</h1>
                 <div class="date-filter">
-                    <button class="date-btn active" data-period="daily">Daily</button>
+                    <!-- <button class="date-btn active" data-period="daily">Daily</button>
                     <button class="date-btn" data-period="weekly">Weekly</button>
-                    <button class="date-btn" data-period="monthly">Monthly</button>
+                    <button class="date-btn" data-period="monthly">Monthly</button> -->
                 </div>
             </header>
 
@@ -77,11 +77,11 @@
                 <div class="chart-card">
                     <div class="chart-header">
                         <h2>Task Completion Trend</h2>
-                        <div class="chart-actions">
+                        <!-- <div class="chart-actions">
                             <button class="chart-filter active" data-chart="completion">All</button>
                             <button class="chart-filter" data-chart="completion">Work</button>
                             <button class="chart-filter" data-chart="completion">Personal</button>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="chart-body">
                         <canvas id="completionChart"></canvas>
@@ -91,10 +91,10 @@
                 <div class="chart-card">
                     <div class="chart-header">
                         <h2>Productivity Hours</h2>
-                        <div class="chart-actions">
+                        <!-- <div class="chart-actions">
                             <button class="chart-filter active" data-chart="productivity">Day</button>
                             <button class="chart-filter" data-chart="productivity">Week</button>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="chart-body">
                         <canvas id="productivityChart"></canvas>
@@ -128,13 +128,14 @@
             </div>
 
             <!-- Journal Section -->
-            <div class="journal-section">
+            <div class="journal-section glass-effect">
                 <div class="journal-header">
-                    <h2>Daily Journal</h2>
+                    <h2><i class="fas fa-book-open"></i> Reflection Journal</h2>
                     <button id="newEntryBtn" class="btn-primary">
                         <i class="fas fa-plus"></i> New Entry
                     </button>
                 </div>
+                
                 <div class="journal-container">
                     <div class="journal-sidebar">
                         <div class="journal-search">
@@ -142,16 +143,46 @@
                             <i class="fas fa-search"></i>
                         </div>
                         <div class="journal-entries" id="journalEntries">
-                            <!-- Journal entries will be added here -->
+                            <!-- Entry items will be added here dynamically -->
                         </div>
                     </div>
+                    
                     <div class="journal-content">
                         <div class="journal-editor">
-                            <input type="text" id="journalTitle" placeholder="Entry Title...">
-                            <textarea id="journalText" placeholder="Write your thoughts..."></textarea>
-                            <div class="editor-actions">
-                                <button class="btn-save" id="saveJournalBtn">Save Entry</button>
-                                <button class="btn-cancel" id="cancelJournalBtn">Cancel</button>
+                            <div class="editor-header">
+                                <input type="text" id="journalTitle" placeholder="Give your thoughts a title...">
+                                <div class="entry-meta">
+                                    <span class="date-tag">
+                                        <i class="far fa-calendar"></i>
+                                        <span id="currentDate"></span>
+                                    </span>
+                                    <span class="mood-selector">
+                                        <i class="far fa-smile"></i>
+                                        <select id="moodSelect">
+                                            <option value="productive">😊 Productive</option>
+                                            <option value="neutral">😐 Neutral</option>
+                                            <option value="stressed">😓 Stressed</option>
+                                            <option value="motivated">🚀 Motivated</option>
+                                        </select>
+                                    </span>
+                                </div>
+                            </div>
+                            <textarea id="journalText" placeholder="What's on your mind? Reflect on your productivity journey..."></textarea>
+                            <div class="editor-toolbar">
+                                <div class="format-tools">
+                                    <button class="tool-btn" title="Bold"><i class="fas fa-bold"></i></button>
+                                    <button class="tool-btn" title="Italic"><i class="fas fa-italic"></i></button>
+                                    <button class="tool-btn" title="List"><i class="fas fa-list-ul"></i></button>
+                                    <span class="separator">|</span>
+                                    <button class="tool-btn" title="Add Image"><i class="fas fa-image"></i></button>
+                                    <button class="tool-btn" title="Add Task"><i class="fas fa-tasks"></i></button>
+                                </div>
+                                <div class="editor-actions">
+                                    <button class="btn-cancel" id="cancelJournalBtn">Cancel</button>
+                                    <button class="btn-save" id="saveJournalBtn">
+                                        <i class="fas fa-save"></i> Save Entry
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>

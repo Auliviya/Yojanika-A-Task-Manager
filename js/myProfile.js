@@ -189,3 +189,52 @@ document.addEventListener('DOMContentLoaded', function() {
         closeModal();
     });
 });
+
+
+
+function handleLogout() {
+    // Show confirmation dialog
+    const confirmLogout = confirm('Are you sure you want to log out?');
+    
+    if (confirmLogout) {
+        try {
+            // Clear all user data from localStorage
+            localStorage.removeItem('currentUser');
+            localStorage.removeItem('isLoggedIn');
+            localStorage.removeItem('userPreferences');
+            localStorage.removeItem('calendarEvents');
+            localStorage.removeItem('journalEntries');
+            localStorage.removeItem('userData');
+            localStorage.removeItem('userToken');
+            localStorage.removeItem('profileData');
+            localStorage.removeItem('preferences');
+            localStorage.removeItem('profileImage');
+            
+            // Show success message
+            showLogoutMessage();
+            
+            // Redirect to login page after a brief delay
+            setTimeout(() => {
+                window.location.href = 'LoginOrSignup.html';
+            }, 1500);
+            
+        } catch (error) {
+            console.error('Logout error:', error);
+            alert('An error occurred during logout. Please try again.');
+        }
+    }
+}
+const logoutBtn = document.getElementById('logoutBtn');
+console.log(logoutBtn);
+logoutBtn.addEventListener('click', handleLogout);
+
+function showLogoutMessage() {
+    // Create and show a success message
+    const messageDiv = document.createElement('div');
+    messageDiv.className = 'logout-message';
+    messageDiv.innerHTML = `
+        <i class="fas fa-check-circle"></i>
+        <span>Logging out successfully...</span>
+    `;
+    document.body.appendChild(messageDiv);
+}

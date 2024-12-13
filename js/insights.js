@@ -361,3 +361,78 @@ class ForestAnalyzer {
 document.addEventListener('DOMContentLoaded', () => {
     const forest = new ForestAnalyzer();
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Set current date
+    const currentDate = new Date().toLocaleDateString('en-US', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    });
+    document.getElementById('currentDate').textContent = currentDate;
+
+    // Format toolbar functionality
+    const toolButtons = document.querySelectorAll('.tool-btn');
+    toolButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            button.classList.toggle('active');
+        });
+    });
+
+    // Save functionality
+    document.getElementById('saveJournalBtn').addEventListener('click', () => {
+        const journalEntry = {
+            id: Date.now(),
+            title: document.getElementById('journalTitle').value,
+            content: document.getElementById('journalText').value,
+            mood: document.getElementById('moodSelect').value,
+            date: new Date().toISOString(),
+        };
+
+        // Save to localStorage
+        const entries = JSON.parse(localStorage.getItem('journalEntries')) || [];
+        entries.unshift(journalEntry);
+        localStorage.setItem('journalEntries', JSON.stringify(entries));
+
+        // Add to sidebar
+        addEntryToSidebar(journalEntry);
+
+        // Show success message
+        showNotification('Journal entry saved successfully!');
+    });
+});
+
+function addEntryToSidebar(entry) {
+    const entryElement = document.createElement('div');
+    entryElement.className = 'journal-entry';
+    entryElement.innerHTML = `
+        <h3>${entry.title}</h3>
+        <div class="entry-meta">
+            <span>${new Date(entry.date).toLocaleDateString()}</span>
+            <span class="mood-indicator">${getMoodEmoji(entry.mood)}</span>
+        </div>
+    `;
+    document.getElementById('journalEntries').prepend(entryElement);
+}
+
+function showNotification(message) {
+    const notification = document.createElement('div');
+    notification.className = 'notification';
+    notification.innerHTML = `
+        <i class="fas fa-check-circle"></i>
+        <span>${message}</span>
+    `;
+    document.body.appendChild(notification);
+    setTimeout(() => notification.remove(), 3000);
+}
+
+function getMoodEmoji(mood) {
+    const moods = {
+        productive: '😊',
+        neutral: '😐',
+        stressed: '😓',
+        motivated: '🚀'
+    };
+    return moods[mood] || '😊';
+}

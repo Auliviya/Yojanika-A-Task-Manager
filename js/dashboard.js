@@ -269,11 +269,12 @@ const dashboard = {
         const currentUser = JSON.parse(localStorage.getItem('currentUser'));
         if (!currentUser) return;
 
-        const calendarTasks = JSON.parse(localStorage.getItem('calendarTasks')) || [];
-        const userTasks = calendarTasks.filter(task => task.userId === currentUser.id);
-
+        // Parse the calendarTasks string to JSON if it's stored as a string
+        const calendarTasksStr = localStorage.getItem('calendarTasks');
+        const calendarTasks = calendarTasksStr ? JSON.parse(calendarTasksStr) : [];
+        
         // Sort tasks by creation date
-        const sortedTasks = userTasks.sort((a, b) => 
+        const sortedTasks = calendarTasks.sort((a, b) => 
             new Date(b.createdAt) - new Date(a.createdAt)
         );
 
@@ -281,32 +282,51 @@ const dashboard = {
         tasksContainer.innerHTML = '';
 
         sortedTasks.forEach(task => {
+            // Format the times from the calendar format
+            const startTime = new Date(task.startTime).toLocaleTimeString('en-US', {
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: true
+            });
+            
+            const endTime = new Date(task.endTime).toLocaleTimeString('en-US', {
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: true
+            });
+            
             const taskElement = document.createElement('div');
             taskElement.className = `task-item ${task.category}`;
             taskElement.innerHTML = `
                 <div class="task-info">
                     <h4>${task.title}</h4>
                     <p>Date: ${task.date}</p>
-                    <p>Time: ${task.start} - ${task.end}</p>
+                    <p>Time: ${startTime} - ${endTime}</p>
                 </div>
                 <div class="task-actions">
                     <button class="status-btn ${task.status}"
-                            onclick="dashboard.toggleTaskStatus('${task.date}', '${task.start}', '${task.title}')">
+                            onclick="dashboard.toggleTaskStatus('${task.id}')">
                         ${task.status === 'completed' ? 'Completed' : 'Pending'}
                     </button>
                 </div>
             `;
             tasksContainer.appendChild(taskElement);
         });
+
+        // If no tasks, show a message
+        if (sortedTasks.length === 0) {
+            tasksContainer.innerHTML = `
+                <div class="no-tasks-message">
+                    <i class="fas fa-tasks"></i>
+                    <p>No tasks scheduled for today</p>
+                </div>
+            `;
+        }
     },
 
-    toggleTaskStatus: function(date, start, title) {
+    toggleTaskStatus: function(taskId) {
         const calendarTasks = JSON.parse(localStorage.getItem('calendarTasks')) || [];
-        const taskIndex = calendarTasks.findIndex(task => 
-            task.date === date && 
-            task.start === start && 
-            task.title === title
-        );
+        const taskIndex = calendarTasks.findIndex(task => task.id === taskId);
 
         if (taskIndex !== -1) {
             calendarTasks[taskIndex].status = 

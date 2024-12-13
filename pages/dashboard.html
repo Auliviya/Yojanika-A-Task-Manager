@@ -23,11 +23,11 @@
 
             <div class="user-profile">
                 <div class="profile-image">
-                    <img src="avatar.svg" alt="Profile">
+                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=John" alt="Profile">
                 </div>
                 <div class="user-info">
-                    <h3>Welcome back,</h3>
-                    <h2 id="username-display"></h2>
+                    <h3>Welcome back, </h3>
+                    <h2 id="sidebar-username">John Deo</h2>
                 </div>
             </div>
 
@@ -157,11 +157,11 @@
             <!-- Recent Tasks -->
             <div class="recent-tasks">
                 <div class="section-header">
-                    <h2>Recent Tasks</h2>
+                    <!-- <h3>Recent Tasks</h3> -->
                     <div class="task-filters">
-                        <button class="filter-btn active" data-filter="all">All</button>
+                        <!-- <button class="filter-btn active" data-filter="all">All</button>
                         <button class="filter-btn" data-filter="today">Today</button>
-                        <button class="filter-btn" data-filter="week">This Week</button>
+                        <button class="filter-btn" data-filter="week">This Week</button> -->
                     </div>
                 </div>
                 <div class="section-header">
@@ -245,6 +245,29 @@
 
         // Check for username changes every few seconds (optional)
         setInterval(updateUsername, 2000);
+    </script>
+    <script>
+        // Function to update username from localStorage
+        function updateUsername() {
+            const sidebarUsername = document.getElementById('sidebar-username');
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            
+            if (currentUser && currentUser.username) {
+                sidebarUsername.textContent = currentUser.username;
+            } else {
+                sidebarUsername.textContent = 'User'; // Fallback if no username is found
+            }
+        }
+    
+        // Update username when page loads
+        document.addEventListener('DOMContentLoaded', updateUsername);
+    
+        // Listen for storage changes (in case username is updated in another tab)
+        window.addEventListener('storage', function(e) {
+            if (e.key === 'currentUser') {
+                updateUsername();
+            }
+        });
     </script>
 </body>
 </html>

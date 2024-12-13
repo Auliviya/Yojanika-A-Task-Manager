@@ -203,29 +203,37 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
 
+            // Get form values
             const eventTitle = document.getElementById('event-title').value;
             const eventDate = document.getElementById('event-date').value;
             const startTime = document.getElementById('start-time').value;
             const endTime = document.getElementById('end-time').value;
             const eventCategory = document.getElementById('event-category').value;
-            
+
+            // Create event data object
             const eventData = {
+                id: Date.now().toString(),
                 title: eventTitle,
                 date: eventDate,
-                start: startTime,
-                end: endTime,
+                startTime: `${eventDate}T${startTime}`, // Combine date and time
+                endTime: `${eventDate}T${endTime}`,     // Combine date and time
                 category: eventCategory,
                 userId: currentUser.id,
                 status: 'pending',
                 createdAt: new Date().toISOString()
             };
 
+            // Save to localStorage
             const calendarTasks = JSON.parse(localStorage.getItem('calendarTasks')) || [];
             calendarTasks.push(eventData);
             localStorage.setItem('calendarTasks', JSON.stringify(calendarTasks));
 
-            this.renderTasks();
+            // Close modal and reset form
             this.closeModal();
+            document.getElementById('event-form').reset();
+
+            // Refresh the calendar view
+            this.renderTasks();
         },
 
         changeView: function(e) {
@@ -275,64 +283,77 @@ document.addEventListener('DOMContentLoaded', function() {
             const userTasks = allTasks.filter(task => task.userId === currentUser.id);
             
             // Clear existing tasks
-            document.querySelectorAll('.task').forEach(task => task.remove());
+            document.querySelectorAll('.calendar-event').forEach(task => task.remove());
             
             const currentDateStr = this.currentDate.toISOString().split('T')[0];
-            const dayColumn = document.querySelector('.day-column');
+            
+            // Ensure day column exists, if not create it
+            let dayColumn = document.querySelector('.day-column');
+            if (!dayColumn) {
+                this.renderDayColumns(); // This will create the day column
+                dayColumn = document.querySelector('.day-column');
+            }
+            
+            if (!dayColumn) {
+                console.error('Day column could not be created');
+                return;
+            }
             
             userTasks.forEach(task => {
                 if (task.date === currentDateStr) {
+                    // Parse start and end times
+                    const [startHour, startMinute] = task.startTime.split('T')[1].split(':');
+                    const [endHour, endMinute] = task.endTime.split('T')[1].split(':');
+                    
+                    // Calculate position and height
+                    const startInMinutes = (parseInt(startHour) * 60) + parseInt(startMinute);
+                    const endInMinutes = (parseInt(endHour) * 60) + parseInt(endMinute);
+                    const duration = endInMinutes - startInMinutes;
+                    
                     const taskElement = document.createElement('div');
-                    taskElement.className = 'task';
+                    taskElement.className = `calendar-event ${task.category}`;
+                    taskElement.setAttribute('data-task-id', task.id);
                     
-                    // Create task content wrapper
-                    const taskContent = document.createElement('div');
-                    taskContent.className = 'task-content';
-                    taskContent.textContent = `${task.title} (${task.start} - ${task.end})`;
+                    // Position the task
+                    taskElement.style.top = `${(startInMinutes / 60) * 60}px`;
+                    taskElement.style.height = `${(duration / 60) * 60}px`;
                     
-                    // Create delete button
-                    const deleteBtn = document.createElement('button');
-                    deleteBtn.className = 'task-delete-btn';
-                    deleteBtn.innerHTML = '&times;';
-                    deleteBtn.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        this.deleteTask(task);
-                    });
+                    // Format time for display
+                    const formattedStartTime = `${startHour}:${startMinute}`;
+                    const formattedEndTime = `${endHour}:${endMinute}`;
                     
-                    // Append elements
-                    taskElement.appendChild(taskContent);
-                    taskElement.appendChild(deleteBtn);
-
-                    const startTime = new Date(`${task.date}T${task.start}`);
-                    const endTime = new Date(`${task.date}T${task.end}`);
-                    const duration = (endTime - startTime) / (1000 * 60); // Duration in minutes
-
-                    taskElement.style.top = `${startTime.getHours() * 60 + startTime.getMinutes()}px`;
-                    taskElement.style.height = `${duration}px`;
+                    taskElement.innerHTML = `
+                        <div class="event-header">
+                            <span class="event-title">${task.title}</span>
+                            <button class="task-delete-btn" onclick="calendar.deleteTask('${task.id}')">&times;</button>
+                        </div>
+                        <div class="event-time">${formattedStartTime} - ${formattedEndTime}</div>
+                    `;
+                    
+                    if (task.status === 'completed') {
+                        taskElement.classList.add('completed');
+                    }
                     
                     dayColumn.appendChild(taskElement);
                 }
             });
         },
 
-        deleteTask: function(taskToDelete) {
+        deleteTask: function(taskId) {
             if (confirm('Are you sure you want to delete this task?')) {
-                const allTasks = JSON.parse(localStorage.getItem('calendarTasks')) || [];
-                
-                // Filter out the task to delete
-                const updatedTasks = allTasks.filter(task => 
-                    !(task.date === taskToDelete.date && 
-                      task.start === taskToDelete.start && 
-                      task.end === taskToDelete.end && 
-                      task.title === taskToDelete.title &&
-                      task.userId === taskToDelete.userId)
-                );
-                
-                // Save updated tasks back to localStorage
+                const calendarTasks = JSON.parse(localStorage.getItem('calendarTasks')) || [];
+                const updatedTasks = calendarTasks.filter(task => task.id !== taskId);
                 localStorage.setItem('calendarTasks', JSON.stringify(updatedTasks));
                 
-                // Re-render tasks
+                // Remove task from DOM
+                const taskElement = document.querySelector(`[data-task-id="${taskId}"]`);
+                if (taskElement) {
+                    taskElement.remove();
+                }
+                
+                // Trigger any necessary updates
                 this.renderTasks();
+                window.dispatchEvent(new Event('storage'));
             }
         },
 
@@ -475,32 +496,6 @@ document.addEventListener('DOMContentLoaded', function() {
             return `${hour}:${minute} ${period}`;
         },
 
-        handleEventSubmit: function(e) {
-            e.preventDefault();
-            
-            const startHour = document.getElementById('start-hour').value;
-            const startMinute = document.getElementById('start-minute').value;
-            const startPeriod = document.getElementById('start-period').value;
-            
-            const endHour = document.getElementById('end-hour').value;
-            const endMinute = document.getElementById('end-minute').value;
-            const endPeriod = document.getElementById('end-period').value;
-
-            const event = {
-                title: document.getElementById('event-title').value,
-                date: document.getElementById('event-date').value,
-                start: this.getTimeString(startHour, startMinute, startPeriod),
-                end: this.getTimeString(endHour, endMinute, endPeriod),
-                category: document.getElementById('event-category').value,
-                description: document.getElementById('event-form').querySelector('textarea').value,
-                id: Date.now().toString(),
-                completed: false
-            };
-
-            // Save event and update calendar
-            this.saveEvent(event);
-        },
-
         initializeTimeSelectors: function() {
             // Set default values based on current time
             const now = new Date();
@@ -568,6 +563,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
 
+    window.calendar = calendar; // Make calendar globally accessible
     calendar.init();
 
     window.addEventListener('taskStatusChanged', function(e) {
@@ -599,4 +595,65 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelector('.new-event-btn').addEventListener('click', () => {
         calendar.initializeTimeSelectors();
     });
+
+    // Add these lines after calendar.init()
+    const cancelBtn = document.querySelector('.btn-cancel');
+    const eventForm = document.getElementById('event-form');
+
+    // Handle cancel button click
+    cancelBtn.addEventListener('click', () => {
+        const modal = document.getElementById('event-modal');
+        modal.style.display = 'none';
+        eventForm.reset();
+    });
+
+    function displayWeekTasks(weekDates) {
+        const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+        
+        tasks.forEach(task => {
+            // Ensure we have a valid date string in YYYY-MM-DD format
+            const taskDateStr = task.date.split('T')[0];
+            const taskColumn = document.querySelector(`.week-day-column[data-date="${taskDateStr}"]`);
+            
+            if (taskColumn) {
+                // Parse the start time to get hours
+                const startTime = new Date(task.startTime);
+                const taskHour = startTime.getHours();
+                const taskContainer = taskColumn.querySelector(`.time-slot-container[data-hour="${taskHour}"]`);
+                
+                if (taskContainer) {
+                    const taskElement = createTaskElement(task);
+                    taskContainer.appendChild(taskElement);
+                } else {
+                    console.warn(`No container found for hour ${taskHour} on date ${taskDateStr}`);
+                }
+            } else {
+                console.warn(`No column found for date ${taskDateStr}`);
+            }
+        });
+    }
+
+    // Modify createTaskElement to handle duration
+    function createTaskElement(task) {
+        const taskEl = document.createElement('div');
+        taskEl.className = 'week-task';
+        taskEl.style.backgroundColor = getCategoryColor(task.category);
+        
+        // Calculate task duration in hours
+        const startTime = new Date(task.startTime);
+        const endTime = new Date(task.endTime);
+        const durationHours = (endTime - startTime) / (1000 * 60 * 60);
+        
+        // Set the height based on duration (60px per hour)
+        taskEl.style.height = `${durationHours * 60}px`;
+        
+        taskEl.innerHTML = `
+            <div class="task-content">
+                <span class="task-title">${task.title}</span>
+                <span class="task-time">${formatTime(task.startTime)} - ${formatTime(task.endTime)}</span>
+            </div>
+        `;
+        
+        return taskEl;
+    }
 });

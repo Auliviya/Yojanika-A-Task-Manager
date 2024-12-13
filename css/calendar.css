@@ -278,35 +278,30 @@ body {
 
 .task {
     position: absolute;
-    left: 0;
-    right: 0;
+    left: 5px;
+    right: 5px;
     background-color: var(--primary-color);
-    color: var(--text-primary);
-    padding: 5px;
+    color: white;
+    padding: 8px;
     border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    gap: 5px;
-}
-
-.task-content {
-    flex: 1;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    font-size: 0.9em;
+    z-index: 1;
 }
 
 .task-delete-btn {
     background: none;
     border: none;
-    color: var(--text-primary);
+    color: white;
     font-size: 16px;
-    padding: 0 5px;
+    padding: 2px 6px;
     cursor: pointer;
-    opacity: 0;
+    
     transition: opacity 0.2s;
+    border-radius: 3px;
 }
 
 .task:hover .task-delete-btn {
@@ -315,7 +310,14 @@ body {
 
 .task-delete-btn:hover {
     background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 3px;
+}
+
+.task-content {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-right: 8px;
 }
 
 .day-columns {
@@ -354,7 +356,7 @@ body {
 
 .calendar-event {
     position: absolute;
-    left: 60px;
+    left: 10px;
     right: 10px;
     padding: 8px;
     border-radius: 4px;
@@ -362,6 +364,8 @@ body {
     font-size: 0.9rem;
     cursor: pointer;
     z-index: 1;
+    overflow: hidden;
+    min-height: 30px;
 }
 
 .calendar-event.completed {
@@ -376,8 +380,8 @@ body {
 
 .event-header {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 8px;
     margin-bottom: 4px;
 }
 
@@ -425,8 +429,8 @@ body {
 }
 
 .event-time {
-    font-size: 0.85em;
-    color: #666;
+    font-size: 0.8rem;
+    opacity: 0.9;
 }
 
 /* Category colors */
@@ -633,5 +637,36 @@ body {
         transform: translateX(0);
         opacity: 1;
     }
+}
+
+.day-events-container {
+    position: relative;
+    height: 1440px; /* 24 hours * 60px */
+}
+
+.week-task {
+    position: absolute;
+    left: 2px;
+    right: 2px;
+    min-height: 25px;
+    border-radius: 4px;
+    padding: 4px;
+    font-size: 12px;
+    color: white;
+    overflow: hidden;
+    cursor: pointer;
+    z-index: 1;
+    transition: all 0.2s ease;
+}
+
+.time-slot {
+    height: 60px;
+    border-bottom: 1px solid var(--border-color);
+    padding: 4px;
+    font-size: 12px;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
 }
 

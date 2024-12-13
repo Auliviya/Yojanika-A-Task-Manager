@@ -1,5 +1,5 @@
 :root {
-    --primary-color: #4A90E2;
+    --primary-color: #7C3AED;
     --secondary-color: #2D3748;
     --background-dark: #121212;
     --card-bg: #1E1E1E;
@@ -233,28 +233,62 @@
   
   /* Journal Section */
   .journal-section {
-    background: var(--card-bg);
-    border-radius: 12px;
-    padding: 1.5rem;
+    margin: 2rem 0;
+    padding: 2rem;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
   }
   
   .journal-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .journal-header h2 {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: var(--text-primary);
+    font-size: 1.8rem;
+  }
+  
+  .journal-header h2 i {
+    color: var(--primary-color);
+  }
+  
+  .btn-primary {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.5rem;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-primary:hover {
+    background: var(--secondary-color);
+    transform: translateY(-2px);
   }
   
   .journal-container {
     display: grid;
     grid-template-columns: 300px 1fr;
-    gap: 1.5rem;
-    height: 500px;
+    gap: 2rem;
+    height: 600px;
   }
   
+  /* Sidebar Styles */
   .journal-sidebar {
-    border-right: 1px solid var(--border-color);
-    padding-right: 1.5rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 15px;
+    padding: 1rem;
   }
   
   .journal-search {
@@ -264,100 +298,180 @@
   
   .journal-search input {
     width: 100%;
-    padding: 0.75rem;
-    padding-left: 2.5rem;
-    background: var(--background-dark);
-    border: 1px solid var(--border-color);
-    border-radius: 6px;
+    padding: 0.8rem 1rem 0.8rem 2.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
     color: var(--text-primary);
   }
   
   .journal-search i {
     position: absolute;
-    left: 0.75rem;
+    left: 1rem;
     top: 50%;
     transform: translateY(-50%);
     color: var(--text-secondary);
   }
   
   .journal-entries {
-    height: calc(100% - 50px);
+    height: calc(100% - 60px);
     overflow-y: auto;
   }
   
-  .journal-entry {
-    padding: 1rem;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-  
-  .journal-entry:hover {
-    background: var(--background-dark);
-  }
-  
-  .journal-entry.active {
-    background: var(--background-dark);
-    border-left: 3px solid var(--primary-color);
-  }
-  
+  /* Editor Styles */
   .journal-editor {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 15px;
+    padding: 1.5rem;
     height: 100%;
     display: flex;
     flex-direction: column;
   }
   
+  .editor-header {
+    margin-bottom: 1.5rem;
+  }
+  
   #journalTitle {
-    font-size: 1.5rem;
+    width: 100%;
     padding: 1rem;
+    font-size: 1.5rem;
     background: transparent;
     border: none;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
     color: var(--text-primary);
     margin-bottom: 1rem;
+  }
+  
+  .entry-meta {
+    display: flex;
+    gap: 1.5rem;
+    color: var(--text-secondary);
+  }
+  
+  .date-tag, .mood-selector {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  #moodSelect {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
   }
   
   #journalText {
     flex: 1;
     padding: 1rem;
-    background: var(--background-dark);
-    border: 1px solid var(--border-color);
-    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
     color: var(--text-primary);
     resize: none;
     margin-bottom: 1rem;
   }
   
+  .editor-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .format-tools {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+  
+  .tool-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    padding: 0.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .tool-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+  }
+  
+  .separator {
+    color: var(--text-secondary);
+    margin: 0 0.5rem;
+  }
+  
   .editor-actions {
     display: flex;
-    justify-content: flex-end;
     gap: 1rem;
   }
   
-  .btn-primary,
-  .btn-save,
-  .btn-cancel {
-    padding: 0.75rem 1.5rem;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 0.9rem;
-  }
-  
-  .btn-primary {
-    background: var(--primary-color);
-    color: white;
+  .btn-save, .btn-cancel {
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
     border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
   }
   
   .btn-save {
-    background: var(--success-color);
+    background: var(--primary-color);
     color: white;
-    border: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
   }
   
   .btn-cancel {
     background: transparent;
-    border: 1px solid var(--border-color);
     color: var(--text-secondary);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .btn-save:hover {
+    background: var(--secondary-color);
+    transform: translateY(-2px);
+  }
+  
+  .btn-cancel:hover {
+    background: rgba(255, 255, 255, 0.05);
+  }
+  
+  /* Scrollbar Styles */
+  .journal-entries::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .journal-entries::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.02);
+  }
+  
+  .journal-entries::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 1024px) {
+    .journal-container {
+        grid-template-columns: 250px 1fr;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .journal-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .journal-sidebar {
+        display: none;
+    }
   }
   
   .forest-analyzer {
