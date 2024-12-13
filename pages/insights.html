@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insights & Analysis | TaskFlow</title>
+    <link rel="stylesheet" href="/css/insights.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="nav-brand">
+                <div class="app-header">
+                    <img src="https://img.icons8.com/ios-filled/50/8a2be2/checklist.png" alt="Task Icon" class="app-icon">
+                    <span class="app-name">Yojanika</span>
+                </div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="tasks.html"><i class="fas fa-tasks"></i> Tasks</a></li>
+                <li class="active"><a href="insights.html"><i class="fas fa-chart-line"></i> Insights</a></li>
+                <li><a href="myProfile.html"><i class="fas fa-user"></i> Profile</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="page-header">
+                <h1>Insights & Analysis</h1>
+                <div class="date-filter">
+                    <button class="date-btn active" data-period="daily">Daily</button>
+                    <button class="date-btn" data-period="weekly">Weekly</button>
+                    <button class="date-btn" data-period="monthly">Monthly</button>
+                </div>
+            </header>
+
+            <!-- Analytics Overview -->
+            <div class="analytics-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Completion Rate</h3>
+                        <p class="stat-value">85%</p>
+                        <span class="trend positive">↑ 12%</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Avg. Time per Task</h3>
+                        <p class="stat-value">45m</p>
+                        <span class="trend negative">↓ 5%</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Tasks Completed</h3>
+                        <p class="stat-value">24</p>
+                        <span class="trend positive">↑ 8%</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts Section -->
+            <div class="charts-container">
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h2>Task Completion Trend</h2>
+                        <div class="chart-actions">
+                            <button class="chart-filter active" data-chart="completion">All</button>
+                            <button class="chart-filter" data-chart="completion">Work</button>
+                            <button class="chart-filter" data-chart="completion">Personal</button>
+                        </div>
+                    </div>
+                    <div class="chart-body">
+                        <canvas id="completionChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h2>Productivity Hours</h2>
+                        <div class="chart-actions">
+                            <button class="chart-filter active" data-chart="productivity">Day</button>
+                            <button class="chart-filter" data-chart="productivity">Week</button>
+                        </div>
+                    </div>
+                    <div class="chart-body">
+                        <canvas id="productivityChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Forest Productivity Section -->
+            <div class="forest-analyzer">
+                <div class="forest-header">
+                    <h2>Productivity Forest</h2>
+                    <div class="forest-stats">
+                        <div class="forest-stat">
+                            <i class="fas fa-tree"></i>
+                            <span id="tree-count">0 trees</span>
+                        </div>
+                        <div class="forest-stat">
+                            <i class="fas fa-leaf"></i>
+                            <span id="productivity-score">0% productive</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="forest-container">
+                    <canvas id="forestCanvas"></canvas>
+                    <div class="forest-timeline">
+                        <span>Morning</span>
+                        <span>Afternoon</span>
+                        <span>Evening</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Journal Section -->
+            <div class="journal-section">
+                <div class="journal-header">
+                    <h2>Daily Journal</h2>
+                    <button id="newEntryBtn" class="btn-primary">
+                        <i class="fas fa-plus"></i> New Entry
+                    </button>
+                </div>
+                <div class="journal-container">
+                    <div class="journal-sidebar">
+                        <div class="journal-search">
+                            <input type="text" placeholder="Search entries...">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <div class="journal-entries" id="journalEntries">
+                            <!-- Journal entries will be added here -->
+                        </div>
+                    </div>
+                    <div class="journal-content">
+                        <div class="journal-editor">
+                            <input type="text" id="journalTitle" placeholder="Entry Title...">
+                            <textarea id="journalText" placeholder="Write your thoughts..."></textarea>
+                            <div class="editor-actions">
+                                <button class="btn-save" id="saveJournalBtn">Save Entry</button>
+                                <button class="btn-cancel" id="cancelJournalBtn">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="/js/insights.js"></script>
+    <script src="/js/forestVisualizer.js"></script>
+</body>
+</html>

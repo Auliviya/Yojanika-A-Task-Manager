@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pomodoro Timer - TaskFlow Pro</title>
+    <link rel="stylesheet" href="/css/pomodoro.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="app-header glass-effect">
+            <div class="header-left">
+                <img src="https://img.icons8.com/ios-filled/50/8a2be2/checklist.png" alt="Task Icon" class="app-icon">
+                <span class="app-name">Yojanika</span>
+            </div>
+            <div class="header-right">
+                <div class="quote-container">
+                    <div class="quote-content">
+                        <p class="quote-text">"Time is not refundable, use it with intention."</p>
+                        <p class="quote-author">- Productivity Wisdom</p>
+                    </div>
+                </div>
+                <div class="user-profile">
+                    <span class="focus-score">
+                        <i class="fas fa-brain"></i>
+                        Focus Score: 85
+                    </span>
+                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=John" alt="User" class="user-avatar">
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <!-- Timer Section -->
+            <div class="timer-section glass-effect">
+                <div class="timer-modes">
+                    <button class="mode-btn active" data-mode="focus">Focus</button>
+                    <button class="mode-btn" data-mode="short-break">Short Break</button>
+                    <button class="mode-btn" data-mode="long-break">Long Break</button>
+                </div>
+                
+                <div class="timer-display">
+                    <div class="timer-circle">
+                        <svg class="timer-progress" viewBox="0 0 100 100">
+                            <circle class="timer-background" cx="50" cy="50" r="45"/>
+                            <circle class="timer-foreground" cx="50" cy="50" r="45"/>
+                        </svg>
+                        <div class="timer-time">
+                            <span id="minutes">25</span>:<span id="seconds">00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timer-controls">
+                    <button id="startBtn" class="control-btn start">
+                        <i class="fas fa-play"></i>
+                    </button>
+                    <button id="resetBtn" class="control-btn reset">
+                        <i class="fas fa-redo"></i>
+                    </button>
+                </div>
+
+                <div class="session-info">
+                    <span class="sessions-completed">Sessions Completed: <span id="sessionCount">0</span>/4</span>
+                    <span class="daily-focus">Total Focus Time: <span id="focusTime">0h 0m</span></span>
+                </div>
+            </div>
+
+            <!-- Focus Analytics -->
+            <div class="analytics-section">
+                <!-- <div class="analytics-card glass-effect">
+                    <h3>Today's Focus Distribution</h3>
+                    <div class="focus-chart" id="focusChart"></div>
+                </div> -->
+
+                <div class="analytics-card glass-effect">
+                    <h3>App Usage During Focus Time</h3>
+                    <div class="app-usage">
+                        <div class="app-item">
+                            <div class="app-icon"><i class="fab fa-chrome"></i></div>
+                            <div class="app-info">
+                                <span class="app-name">Chrome</span>
+                                <div class="usage-bar">
+                                    <div class="usage-fill" style="width: 75%"></div>
+                                </div>
+                                <span class="usage-time">45m</span>
+                            </div>
+                        </div>
+                        <div class="app-item">
+                            <div class="app-icon"><i class="fab fa-facebook"></i></div>
+                            <div class="app-info">
+                                <span class="app-name">Facebook</span>
+                                <div class="usage-bar">
+                                    <div class="usage-fill" style="width: 45%"></div>
+                                </div>
+                                <span class="usage-time">27m</span>
+                            </div>
+                        </div>
+                        <div class="app-item">
+                            <div class="app-icon"><i class="fas fa-envelope"></i></div>
+                            <div class="app-info">
+                                <span class="app-name">Email</span>
+                                <div class="usage-bar">
+                                    <div class="usage-fill" style="width: 25%"></div>
+                                </div>
+                                <span class="usage-time">15m</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="analytics-card glass-effect">
+                    <h3>Focus Insights</h3>
+                    <div class="insights-grid">
+                        <div class="insight-item">
+                            <i class="fas fa-chart-line"></i>
+                            <div class="insight-info">
+                                <h4>Focus Trend</h4>
+                                <p>+15% vs. last week</p>
+                            </div>
+                        </div>
+                        <div class="insight-item">
+                            <i class="fas fa-clock"></i>
+                            <div class="insight-info">
+                                <h4>Peak Hours</h4>
+                                <p>10 AM - 12 PM</p>
+                            </div>
+                        </div>
+                        <div class="insight-item">
+                            <i class="fas fa-trophy"></i>
+                            <div class="insight-info">
+                                <h4>Best Streak</h4>
+                                <p>4 sessions</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/js/pomodoro.js"></script>
+</body>
+</html>

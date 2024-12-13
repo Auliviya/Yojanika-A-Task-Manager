@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login / Create Account</title>
+  <link rel="stylesheet" href="/css/LoginOrSignup.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <header>
+    <div class="app-header">
+        <img src="https://img.icons8.com/ios-filled/50/8a2be2/checklist.png" alt="Task Icon" class="app-icon">
+        <span class="app-name">Yojanika</span>
+    </div>
+</header>
+  <div class="card">
+    <img src="/img/img20.svg" alt="Card Image" class="card-image">
+  </div>
+  
+  <div class="container">
+    <h1>Welcome Back!</h1>
+    <p>Log in or create an account to continue.</p>
+    <div class="form-container">
+      <form id="loginForm">
+        <input type="email" placeholder="Email" id="email" required>
+        <input type="password" placeholder="Password" id="password" required>
+        <button type="submit" id="login-btn">Log In</button>
+        
+        <div class="separator">
+          <span>OR</span>
+        </div>
+        
+        <button type="button" id="google-btn">
+          <i class="fab fa-google"></i>
+          Continue with Google
+        </button>
+      </form>
+      <p>Don't have an account? <a href="#" id="showSignup">Sign Up</a></p>
+    </div>
+    
+    <div class="form-container" id="signupContainer" style="display: none;">
+      <form id="signupForm">
+        <input type="text" placeholder="Username" id="signupUsername" required>
+        <input type="email" placeholder="Email" id="signupEmail" required>
+        <input type="password" placeholder="Password" id="signupPassword" required>
+        <button type="submit" id="signup-btn">Sign Up</button>
+      </form>
+      <p>Already have an account? <a href="#" id="showLogin">Log In</a></p>
+    </div>
+  </div>
+  
+  <script src="/js/LoginOrSignup.js"></script>
+</body>
+</html>

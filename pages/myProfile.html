@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - TaskFlow Pro</title>
+    <link rel="stylesheet" href="/css/myprofile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <img src="/img/logo.svg" alt="TaskFlow Pro">
+                <h1>TaskFlow Pro</h1>
+            </div>
+
+            <div class="user-section">
+                <div class="user-info">
+                    <img src="/img/avatar.svg" alt="User Avatar" class="user-avatar">
+                    <span class="user-name">John Doe</span>
+                </div>
+                <button id="logoutBtn" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </button>
+            </div>
+
+            <nav class="side-nav">
+                <a href="dashboard.html" class="nav-item">
+                    <i class="fas fa-home"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="calendar.html" class="nav-item">
+                    <i class="fas fa-calendar"></i>
+                    <span>Calendar</span>
+                </a>
+                <!-- <a href="#" class="nav-item">
+                    <i class="fas fa-list-check"></i>
+                    <span>My Tasks</span>
+                </a> -->
+                <a href="insights.html" class="nav-item">
+                    <i class="fa fa-line-chart"></i>
+                    <span>Analytics</span>
+                </a>
+                <a href="myProfile.html" class="nav-item active">
+                    <i class="fas fa-user"></i>
+                    <span>Profile</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="profile-center">
+                <!-- Centered Profile Header -->
+                <div class="profile-header-center glass-card">
+                    <div class="avatar-section">
+                        <div class="avatar-container">
+                            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=John" 
+                                 alt="Profile Picture" 
+                                 id="profile-image"
+                                 class="profile-avatar">
+                            <button class="edit-photo-btn">
+                                <i class="fas fa-camera"></i>
+                            </button>
+                        </div>
+                        <div class="user-info">
+                            <h3>Hello,</h3>
+                            <h2 id="username-display"></h2>
+                        </div>
+                        <!-- <div class="user-badges">
+                            <span class="badge">
+                                <i class="fas fa-crown"></i> Premium Member
+                            </span>
+                            <span class="badge">
+                                <i class="fas fa-star"></i> Task Master
+                            </span>
+                        </div> -->
+                    </div>
+                </div>
+
+                <!-- Profile Content -->
+                <div class="profile-content">
+                    <!-- Stats Cards -->
+                    <div class="profile-stats">
+                        <div class="stat-card glass-card">
+                            <i class="fas fa-tasks"></i>
+                            <h3>Total Tasks</h3>
+                            <p>248</p>
+                        </div>
+                        <div class="stat-card glass-card">
+                            <i class="fas fa-check-circle"></i>
+                            <h3>Completed</h3>
+                            <p>186</p>
+                        </div>
+                        <div class="stat-card glass-card">
+                            <i class="fas fa-star"></i>
+                            <h3>Achievements</h3>
+                            <p>12</p>
+                        </div>
+                        <div class="stat-card glass-card">
+                            <i class="fas fa-fire"></i>
+                            <h3>Current Streak</h3>
+                            <p>8 days</p>
+                        </div>
+                    </div>
+
+                    <!-- Personal Information -->
+                    <section class="profile-section glass-card">
+                        <div class="section-header">
+                            <h2>Personal Information</h2>
+                            <button class="edit-btn" data-section="personal">
+                                <i class="fas fa-pencil"></i> Edit
+                            </button>
+                        </div>
+                        <div class="section-content" id="personal-info">
+                            <div class="info-grid">
+                                <div class="info-item">
+                                    <label>Full Name</label>
+                                    <p id="display-name">John Doe</p>
+                                </div>
+                                <div class="info-item">
+                                    <label>Email</label>
+                                    <p id="display-email">john.doe@example.com</p>
+                                </div>
+                                <div class="info-item">
+                                    <label>Phone</label>
+                                    <p id="display-phone">+1 (555) 123-4567</p>
+                                </div>
+                                <div class="info-item">
+                                    <label>Location</label>
+                                    <p id="display-location">New York, USA</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Edit Profile Modal -->
+    <div class="modal" id="edit-profile-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Edit Profile</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <form id="profile-form">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" name="fullName" required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone</label>
+                    <input type="tel" name="phone">
+                </div>
+                <div class="form-group">
+                    <label>Location</label>
+                    <input type="text" name="location">
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn-cancel">Cancel</button>
+                    <button type="submit" class="btn-save">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="/js/myprofile.js"></script>
+</body>
+</html>

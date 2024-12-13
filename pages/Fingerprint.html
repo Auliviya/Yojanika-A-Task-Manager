@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fingerprint Authentication</title>
+  <link rel="stylesheet" href="/css/Fingerprint.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <div class="container">
+    <div class="auth-box">
+      <h1>Fingerprint Authentication</h1>
+      <div class="auth-message">
+        <p>Place your finger on the scanner to authenticate</p>
+        <small id="instruction">Touch to start scanning</small>
+      </div>
+      
+      <div class="scanner" id="scanner">
+        <div class="fingerprint-icon">
+          <i class="fas fa-fingerprint"></i>
+        </div>
+        <div class="scan-line"></div>
+        <div class="scan-area"></div>
+      </div>
+
+      <div class="status-container">
+        <p id="status-message">Awaiting fingerprint...</p>
+        <div class="progress-bar" id="progress-bar">
+          <div class="progress"></div>
+        </div>
+      </div>
+
+      <div class="auth-actions">
+        <button id="retry-btn" class="hidden">Try Again</button>
+        <button id="alt-auth-btn">Use Password Instead</button>
+      </div>
+
+      <!-- Fallback Password Form -->
+      <form id="password-form" class="hidden">
+        <div class="form-group">
+          <input type="text" id="username" placeholder="Username" required>
+        </div>
+        <div class="form-group">
+          <input type="password" id="password" placeholder="Password" required>
+        </div>
+        <button type="submit">Login</button>
+        <button type="button" id="back-to-fp">Back to Fingerprint</button>
+      </form>
+    </div>
+  </div>
+  <script src="/js/Fingerprint.js"></script>
+</body>
+</html>

@@ -1,0 +1,139 @@
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(180deg, black, rgb(62, 34, 62), black);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+
+header {
+  background-color: black; /* Optional: Background color for header */
+  padding: 10px 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+}
+
+.app-icon {
+  width: 30px; /* Icon size */
+  height: 30px;
+  margin-right: 10px; /* Space between icon and text */
+}
+
+.app-name {
+  font-size: 26px;
+  font-weight: bold;
+  color: #a66edb; /* Stylish purple color */
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .app-name {
+      font-size: 20px; /* Adjust font size for smaller screens */
+  }
+
+  .app-icon {
+      width: 24px;
+      height: 24px;
+  }
+}
+
+  
+  .container {
+    text-align: center;
+    animation: fadeIn 1.5s ease-in-out;
+  }
+  .animated-image1 {
+   height: 270px;
+   width: 270px;
+   position: fixed;
+   top: 70px;
+   right: 690px;
+   
+  }
+.animated-image2{
+  height: 130px;
+   width: 130px;
+   position: fixed;
+   top: 300px;
+   right: 1150px;
+
+}
+.animated-image3{
+  height: 130px;
+   width: 130px;
+   position: fixed;
+   top: 550px;
+   right: 1000px;
+
+}
+.animated-image4{
+  height: 110px;
+   width: 110px;
+   position: fixed;
+   top: 550px;
+   right: 560px;
+
+}
+.animated-image5{
+  height: 130px;
+   width: 130px;
+   position: fixed;
+   top: 300px;
+   right: 400px;
+
+}
+
+  h1 {
+    margin-top: 5rem;
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+  
+  p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+  }
+  
+  button {
+    background: linear-gradient(45deg, #ff007f, #7f00ff);
+    color: #fff;
+    border: none;
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+button:hover {
+  transform: scale(1.1);
+  box-shadow: 0px 0px 30px #591d99 ;
+  0px 0px 25px #591d99;
+  0px 0px 50px #591d99;
+  0px 0px 100px #591d99;
+
+  
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

@@ -1,0 +1,286 @@
+:root {
+    --background-dark: #0A0A1A;
+    --surface-dark: #1A1A2F;
+    --primary-color: #8A2BE2;
+    --secondary-color: #4A90E2;
+    --accent-color: #FF4081;
+    --success-color: #4CAF50;
+    --text-primary: #FFFFFF;
+    --text-secondary: #B0B0B0;
+    --glass-bg: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.05);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--background-dark);
+    color: var(--text-primary);
+}
+
+.glass-effect {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+}
+
+/* Header Styles */
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+/* Updated Quote Styles */
+.quote-container {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 500px;
+    padding: 0 1rem;
+    text-align: center;
+}
+}
+
+.quote-content {
+    text-align: center;
+}
+
+.quote-text {
+    font-size: 1rem;
+    color: var(--text-primary);
+    font-weight: 500;
+    font-style: italic;
+    margin-bottom: 0.25rem;
+}
+
+.quote-author {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.focus-score {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-secondary);
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid var(--primary-color);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    .quote-container {
+        max-width: 300px;
+    }
+    
+    .quote-text {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .quote-container {
+        display: none; /* Hide quote on mobile */
+    }
+    
+    .app-header {
+        padding: 1rem;
+    }
+}
+
+/* Timer Section Styles */
+.timer-section {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    text-align: center;
+}
+
+.timer-modes {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.mode-btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    background: var(--surface-dark);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.mode-btn.active {
+    background: var(--primary-color);
+    color: white;
+}
+
+.timer-display {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    margin: 0 auto;
+}
+
+.timer-circle {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.timer-progress circle {
+    fill: none;
+    stroke-width: 5;
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+}
+
+.timer-background {
+    stroke: var(--surface-dark);
+}
+
+.timer-foreground {
+    stroke: var(--primary-color);
+    stroke-dasharray: 283;
+    stroke-dashoffset: 283;
+    transition: stroke-dashoffset 1s linear;
+}
+
+.timer-time {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3.5rem;
+    font-weight: 700;
+}
+
+.timer-controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.control-btn {
+    width: 60px;
+    height: 60px;
+    border: none;
+    border-radius: 50%;
+    background: var(--primary-color);
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.control-btn:hover {
+    transform: scale(1.1);
+}
+
+/* Analytics Section Styles */
+.analytics-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.analytics-card {
+    padding: 1.5rem;
+}
+
+.app-usage {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.app-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.app-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--surface-dark);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.app-info {
+    flex: 1;
+}
+
+.usage-bar {
+    height: 6px;
+    background: var(--surface-dark);
+    border-radius: 3px;
+    margin: 0.5rem 0;
+}
+
+.usage-fill {
+    height: 100%;
+    background: var(--primary-color);
+    border-radius: 3px;
+    transition: width 0.3s ease;
+}
+
+.insights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+}
+
+.insight-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--surface-dark);
+    border-radius: 8px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .timer-display {
+        width: 250px;
+        height: 250px;
+    }
+
+    .timer-time {
+        font-size: 2.5rem;
+    }
+}

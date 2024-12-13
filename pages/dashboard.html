@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskFlow Pro - Task Manager</title>
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                
+                <div class="app-header">
+                    <img src="https://img.icons8.com/ios-filled/50/8a2be2/checklist.png" alt="Task Icon" class="app-icon">
+                    <span class="app-name">Yojanika</span>
+                </div>
+                
+            </div>
+
+            <div class="user-profile">
+                <div class="profile-image">
+                    <img src="avatar.svg" alt="Profile">
+                </div>
+                <div class="user-info">
+                    <h3>Welcome back,</h3>
+                    <h2 id="username-display"></h2>
+                </div>
+            </div>
+
+            <nav class="side-nav">
+                <a href="#" class="nav-item active">
+                    <i class="fas fa-home"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="calendar.html" class="nav-item">
+                    <i class="fas fa-calendar"></i>
+                    <span>Calendar</span>
+                </a>
+                
+                <a href="insights.html" class="nav-item">
+                    <i class="fa fa-line-chart"></i>
+                    <span>Insights</span>
+                </a>
+                <a href="myProfile.html" class="nav-item">
+                    <i class="fas fa-user-circle"></i>
+                    <span>Profile</span>
+                </a>
+                
+            </nav>
+
+            <!-- <div class="premium-card">
+                <i class="fas fa-crown"></i>
+                <h3>Upgrade to Pro</h3>
+                <p>Get more features with premium</p>
+                <button class="upgrade-btn">Upgrade Now</button>
+            </div> -->
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-bar">
+                <!-- <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search tasks...">
+                </div> -->
+                <div class="top-nav">
+                    <!-- <button class="notification-btn">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">3</span>
+                    </button> -->
+                    <button class="add-task-btn">
+                        <i class="fas fa-plus"></i> New Task
+                    </button>
+                </div>
+            </header>
+
+            <!-- Task Overview -->
+            <div class="task-overview">
+                <div class="overview-card total">
+                    <div class="card-icon">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <div class="card-info">
+                        <h3>Total Tasks</h3>
+                        <h2 id="total-tasks">0</h2>
+                        <p><span class="trend" id="total-trend"></span></p>
+                    </div>
+                </div>
+                <div class="overview-card completed">
+                    <div class="card-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="card-info">
+                        <h3>Completed</h3>
+                        <h2 id="completed-tasks">0</h2>
+                        <p><span class="trend" id="completed-trend"></span></p>
+                    </div>
+                </div>
+                <div class="overview-card pending">
+                    <div class="card-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="card-info">
+                        <h3>In Progress</h3>
+                        <h2 id="pending-tasks">0</h2>
+                        <p><span class="trend" id="pending-trend"></span></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Task Categories -->
+            <div class="task-categories">
+                <div class="section-header">
+                    <h2>Task Categories</h2>
+                    <!-- <button class="view-all">View All</button> -->
+                </div>
+                <div class="categories-grid">
+                    <div class="category-card work">
+                        <i class="fas fa-briefcase"></i>
+                        <h3>Work</h3>
+                        <p>0 tasks</p>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <div class="category-card personal">
+                        <i class="fas fa-user"></i>
+                        <h3>Personal</h3>
+                        <p>0 tasks</p>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <div class="category-card shopping">
+                        <i class="fas fa-shopping-cart"></i>
+                        <h3>Shopping</h3>
+                        <p>0 tasks</p>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <div class="category-card health">
+                        <i class="fas fa-heartbeat"></i>
+                        <h3>Health</h3>
+                        <p>0 tasks</p>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Tasks -->
+            <div class="recent-tasks">
+                <div class="section-header">
+                    <h2>Recent Tasks</h2>
+                    <div class="task-filters">
+                        <button class="filter-btn active" data-filter="all">All</button>
+                        <button class="filter-btn" data-filter="today">Today</button>
+                        <button class="filter-btn" data-filter="week">This Week</button>
+                    </div>
+                </div>
+                <div class="section-header">
+                    <h2>Today's Task Details</h2>
+                </div>
+                <div class="tasks-list" id="tasks-container">
+                    <!-- Tasks will be dynamically added here -->
+                </div>
+            </div>
+
+            <!-- Today's Task Details -->
+            <div class="todays-tasks">
+                <!-- <div class="section-header">
+                    <h2>Today's Task Details</h2>
+                </div> -->
+                <div class="tasks-list" id="todays-tasks-container">
+                    <!-- Today's tasks will be dynamically added here -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+
+    <!-- New Task Modal -->
+    <div class="modal" id="task-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Create New Task</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <form id="task-form">
+                <div class="form-group">
+                    <input type="text" name="title" placeholder="Task Title" required>
+                </div>
+                <div class="form-group">
+                    <textarea name="description" placeholder="Task Description"></textarea>
+                </div>
+                <div class="form-group">
+                    <select name="category" required>
+                        <option value="">Select Category</option>
+                        <option value="work">Work</option>
+                        <option value="personal">Personal</option>
+                        <option value="shopping">Shopping</option>
+                        <option value="health">Health</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="date" name="dueDate" required>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn-cancel">Cancel</button>
+                    <button type="submit" class="btn-save">Create Task</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="/js/dashboard.js"></script>
+    <script>
+        // Function to update username from localStorage
+        function updateUsername() {
+            const usernameDisplay = document.getElementById('username-display');
+            const username = localStorage.getItem('username');
+            
+            if (username) {
+                usernameDisplay.textContent = username;
+            } else {
+                usernameDisplay.textContent = 'User'; // Fallback if no username is found
+            }
+        }
+
+        // Update username when page loads
+        document.addEventListener('DOMContentLoaded', updateUsername);
+
+        // Listen for storage changes (in case username is updated in another tab)
+        window.addEventListener('storage', function(e) {
+            if (e.key === 'username') {
+                updateUsername();
+            }
+        });
+
+        // Check for username changes every few seconds (optional)
+        setInterval(updateUsername, 2000);
+    </script>
+</body>
+</html>

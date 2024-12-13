@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar - Outlook Style</title>
+    <link rel="stylesheet" href="/css/calendar.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Add Navigation Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <div class="app-header">
+                    <img src="https://img.icons8.com/ios-filled/50/8a2be2/checklist.png" alt="Task Icon" class="app-icon">
+                    <span class="app-name">Yojanika</span>
+                </div>
+            </div>
+
+            <div class="user-profile">
+                <div class="profile-image">
+                    <img src="/img/avatar.svg" alt="Profile">
+                </div>
+                <div class="user-info">
+                    <h3>Welcome back,</h3>
+                    <h2 id="username-display"></h2>
+                </div>
+            </div>
+
+            <nav class="side-nav">
+                <a href="dashboard.html" class="nav-item">
+                    <i class="fas fa-home"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="calendar.html" class="nav-item active">
+                    <i class="fas fa-calendar"></i>
+                    <span>Calendar</span>
+                </a>
+                <a href="insights.html" class="nav-item">
+                    <i class="fa fa-line-chart"></i>
+                    <span>Insights</span>
+                </a>
+                <a href="myProfile.html" class="nav-item">
+                    <i class="fas fa-user-circle"></i>
+                    <span>Profile</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Wrap existing calendar-wrapper -->
+        <div class="calendar-wrapper">
+            <!-- Left Sidebar -->
+            <aside class="calendar-sidebar">
+                <div class="mini-calendar" id="mini-calendar">
+                    <h3 id="mini-calendar-month">March 2024</h3>
+                    <div class="mini-calendar-grid" id="mini-calendar-grid">
+                        <!-- Days will be dynamically added here -->
+                    </div>
+                </div>
+                
+                <div class="calendar-list">
+                    <h3>My Calendars</h3>
+                    <ul>
+                        <li>
+                            <input type="checkbox" checked id="calendar1">
+                            <label for="calendar1">Calendar</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" checked id="calendar2">
+                            <label for="calendar2">Birthdays</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" checked id="calendar3">
+                            <label for="calendar3">Tasks</label>
+                        </li>
+                    </ul>
+                    <img src="/img/img5.svg" height="250" width="200" >
+                </div>
+            </aside>
+
+            <!-- Main Calendar Area -->
+            <main class="calendar-main">
+                <!-- Calendar Header -->
+                <div class="calendar-header">
+                    <div class="calendar-nav">
+                        <button class="new-event-btn">
+                            <i class="fas fa-plus"></i> New Event
+                        </button>
+                        <div class="nav-buttons">
+                            <button class="nav-btn" id="prev"><i class="fas fa-chevron-left"></i></button>
+                            <button class="nav-btn" id="today">Today</button>
+                            <button class="nav-btn" id="next"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                        <h2 id="current-date">March 2024</h2>
+                    </div>
+                    <div class="view-options">
+                        <button class="view-btn active" data-view="day">Day</button>
+                       
+                        <button class="view-btn" data-view="week">Week</button>
+                        <button class="view-btn" data-view="month">Month</button>
+                        
+                    </div>
+                </div>
+
+                <!-- Calendar Grid -->
+                <div class="calendar-grid">
+                    <!-- Time Column -->
+                    <div class="time-column">
+                        <div class="time-slot">12 AM</div>
+                        <!-- Add all 24 hours -->
+                    </div>
+
+                    <!-- Day Columns -->
+                    <div class="day-columns" id="day-columns">
+                        <!-- Day columns will be added dynamically with completion status -->
+                    </div>
+                </div>
+                
+            </main>
+        </div>
+    </div>
+    
+
+    <!-- New Event Modal -->
+    <div class="modal" id="event-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>New Event</h3>
+                <button class="close-btn">&times;</button>
+            </div>
+            <form id="event-form">
+                <div class="form-group">
+                    <input type="text" id="event-title" placeholder="Add title" required>
+                </div>
+                <div class="form-group">
+                    <input type="date" id="event-date" required>
+                </div>
+                <div class="form-group time-input-group">
+                    <i class="far fa-clock"></i>
+                    <input type="time" id="start-time" required>
+                    <span>to</span>
+                    <input type="time" id="end-time" required>
+                </div>
+                    
+                            
+                            
+                          
+                <div class="form-group">
+                    <select id="event-category" required>
+                        <option value="" disabled selected>Select category</option>
+                        <option value="work">Work</option>
+                        <option value="personal">Personal</option>
+                        <option value="market">Market</option>
+                        <option value="health">Health</option>
+                    </select>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn-cancel">Cancel</button>
+                    <button type="submit" class="btn-save">Save</button>
+                </div>
+                
+            </form>
+            
+        </div>
+        
+    </div>
+
+    <script src="/js/calendar.js"></script>
+</body>
+</html>

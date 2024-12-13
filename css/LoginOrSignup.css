@@ -1,0 +1,250 @@
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(black, rgb(42, 40, 40), black);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+  }
+  /* .card {
+   
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    width: 340px;
+    height: 340px;
+    text-align: center;
+    margin-top: 60px;
+    margin-left: 10px;
+    
+  }
+   */
+  
+  /* .container {
+    text-align: center;
+    animation: fadeIn 1.5s ease-in-out;
+  } */
+  
+  /* General Reset */
+
+
+header {
+  background-color: black; /* Optional: Background color for header */
+  padding: 10px 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+}
+
+.app-icon {
+  width: 30px; /* Icon size */
+  height: 30px;
+  margin-right: 10px; /* Space between icon and text */
+}
+
+.app-name {
+  font-size: 26px;
+  font-weight: bold;
+  color: #a66edb; /* Stylish purple color */
+  ; /* Stylish purple color */
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .app-name {
+      font-size: 20px; /* Adjust font size for smaller screens */
+  }
+
+  .app-icon {
+      width: 24px;
+      height: 24px;
+  }
+}
+
+  
+   .card-image {
+    width: 350px;
+    height: 250px;
+    border-radius: 8px;
+    object-fit: cover;
+    margin-top: 80px;
+    margin-right: 0px;
+  } 
+  
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
+  }
+  
+  p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  
+  .form-container {
+    background: rgba(255, 255, 255, 0.1);
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.8);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  border-radius: 5px;
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  color: #fff;
+}
+
+input:focus {
+  outline: 2px solid #7f00ff;
+}
+
+#login-btn{
+  background: linear-gradient(45deg, #ff007f, #7f00ff);
+  color: #fff;
+  border: none;
+  padding: 0.8rem;
+  font-size: 1rem;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+#google-btn{
+  background: white;
+  color: black;
+  border: none;
+  padding: 0.8rem;
+  font-size: 1rem;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  margin-top: 2rem;
+}
+
+
+#login-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 0px 30px #9348e3;
+  
+ 
+}
+#google-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 0px 30px #ecf31a;
+  
+ 
+}
+#signup-btn {
+  background: linear-gradient(45deg, #ff007f, #7f00ff);
+  color: #fff;
+  border: none;
+  padding: 0.8rem;
+  font-size: 1rem;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+#signup-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 0px 30px #9348e3;
+  
+ 
+}
+
+
+a {
+  color: #ac81d7;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+
+.separator {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 15px 0;  /* Reduced margin */
+}
+
+.separator span {
+  padding: 0 15px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.separator::before,
+.separator::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+#google-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 15px;  /* Added margin top */
+  background-color: #fff;  /* White background */
+  color: #757575;  /* Google's gray text color */
+  border: 1px solid #dadce0;  /* Google's border color */
+  padding: 12px 16px;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+#google-btn:hover {
+  background-color: #f5f5f5;  /* Light gray on hover */
+}
+
+.google-icon {
+  width: 18px;
+  height: 18px;
+  margin-right: 8px;
+}
+
+/* Adjust input and button spacing */
+#loginForm input,
+#loginForm button {
+  margin-bottom: 10px;
+}
+
+#login-btn {
+  margin-bottom: 20px;  /* Add space before separator */
+}
